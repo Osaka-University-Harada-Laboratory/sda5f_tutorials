@@ -28,7 +28,7 @@ ROS package for YASKAWA MOTOMAN SDA5F tutorial.
 3. launch moveit  
     `$ roslaunch motoman_sda5f_moveit_config demo.launch`
 4. execute tutorial demo  
-    `$ roslaunch sda5f_tutorials wiggle.launch`
+    `$ roslaunch sda5f_tutorials [demo_name].launch`
 
 ## Author / Contributor
 

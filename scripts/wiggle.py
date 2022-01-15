@@ -31,15 +31,22 @@ def wiggle():
     """Execute a wiggle motions
 
     """
-    # get current status
     rospy.init_node("moveit_command_sender")
     robot = RobotCommander()
     rarm = MoveGroupCommander("arm_right")
+    
+    # get current status
     larm = MoveGroupCommander("arm_left")
     rarm_initial_pose = rarm.get_current_pose().pose
     rarm_initial_joint_values = rarm.get_current_joint_values()
     larm_initial_pose = larm.get_current_pose().pose
     larm_initial_joint_values = larm.get_current_joint_values()
+
+    # set maximum velocity and acceleration
+    rarm.set_max_velocity_scaling_factor(1.0)
+    rarm.set_max_acceleration_scaling_factor(1.0)
+    larm.set_max_velocity_scaling_factor(1.0)
+    larm.set_max_acceleration_scaling_factor(1.0)
 
     # generate poses
     for_pose_r = Pose()
