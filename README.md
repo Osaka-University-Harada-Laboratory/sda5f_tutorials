@@ -5,12 +5,13 @@ ROS package for YASKAWA MOTOMAN SDA5F tutorial.
 ## Dependencies
 
 - ROS Kinetic
-- motoman driver
+- [ros-industrial/motoman](https://github.com/ros-industrial/motoman)
+- [qqfly/motoman_sda5f_pkg](https://github.com/qqfly/motoman_sda5f_pkg)
 
 ## Installation
 
     $ cd catkin_ws
-    $ git clone -b kinetic-devel https://github.com/ros-industrial/motoman.git src/motoman
+    $ git clone -b kinetic-devel git@github.com:ros-industrial/motoman.git src/motoman
     $ git reset --hard $SHA1
     $ git clone git@github.com:qqfly/motoman_sda5f_pkg.git src/motoman_sda5f_pkg
     $ git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git src/sda5f_tutorials
