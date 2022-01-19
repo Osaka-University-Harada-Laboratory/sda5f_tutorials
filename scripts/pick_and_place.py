@@ -8,7 +8,7 @@ from tf.transformations import quaternion_from_euler, euler_from_quaternion
 
 
 def euler_to_quaternion(euler):
-    """Convert Euler Angles to Quaternion
+    """Converts euler angles to quaternion.
 
     euler: geometry_msgs/Vector3
     quaternion: geometry_msgs/Quaternion
@@ -18,7 +18,7 @@ def euler_to_quaternion(euler):
 
 
 def quaternion_to_euler(quaternion):
-    """Convert Quaternion to Euler Angles
+    """Converts quaternion to euler angles.
 
     quarternion: geometry_msgs/Quaternion
     euler: geometry_msgs/Vector3
@@ -28,10 +28,7 @@ def quaternion_to_euler(quaternion):
 
 
 def show_joint_values(mgc):
-    """Show Joint Values with rospy log info
-
-    mgc: MoveGroupCommander()
-    """
+    """Shows joint values with rospy log info."""
     rjs = mgc.get_current_joint_values()
     rospy.loginfo("Current joint angles.")
     rospy.loginfo("j1: %f", rjs[0])
@@ -44,20 +41,14 @@ def show_joint_values(mgc):
 
 
 def go_with_joint_values(mgc, jvs):
-    """Convert Quaternion to Euler Angles
-
-    mgc: MoveGroupCommander()
-    jvs: Joint Values Python List
-    """
+    """Executes the motions with joint values set."""
     mgc.set_joint_value_target(jvs)
     mgc.go()
     rospy.sleep(rospy.Duration.from_sec(1))
 
 
 def pick_and_place():
-    """Execute a pick-and-place motions
-
-    """
+    """Executes pick-and-place motions."""
     rospy.init_node("moveit_command_sender")
     robot = RobotCommander()
     rarm = MoveGroupCommander("arm_right")
@@ -121,3 +112,4 @@ if __name__ == '__main__':
         pick_and_place()
     except rospy.ROSInterruptException:
         pass
+

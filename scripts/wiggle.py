@@ -8,7 +8,7 @@ from tf.transformations import quaternion_from_euler, euler_from_quaternion
 
 
 def euler_to_quaternion(euler):
-    """Convert Euler Angles to Quaternion
+    """Converts euler angles to quaternion.
 
     euler: geometry_msgs/Vector3
     quaternion: geometry_msgs/Quaternion
@@ -18,7 +18,7 @@ def euler_to_quaternion(euler):
 
 
 def quaternion_to_euler(quaternion):
-    """Convert Quaternion to Euler Angles
+    """Converts quaternion to euler angles.
 
     quarternion: geometry_msgs/Quaternion
     euler: geometry_msgs/Vector3
@@ -28,9 +28,7 @@ def quaternion_to_euler(quaternion):
 
 
 def wiggle():
-    """Execute a wiggle motions
-
-    """
+    """Executes wiggle motions."""
     rospy.init_node("moveit_command_sender")
     robot = RobotCommander()
     rarm = MoveGroupCommander("arm_right")
@@ -134,3 +132,4 @@ if __name__ == '__main__':
         wiggle()
     except rospy.ROSInterruptException:
         pass
+
