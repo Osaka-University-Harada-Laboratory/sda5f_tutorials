@@ -16,9 +16,8 @@ ROS package for YASKAWA MOTOMAN SDA5F tutorial.
     $ git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git src/sda5f_tutorials
     $ rosdep update
     $ rosdep install --from-paths src --ignore-src --rosdistro kinetic
-    $ cd catkin_ws; catkin build
+    $ catkin build
     $ source ../catkin_ws/devel/setup.bash
-
 
 ## Usage
 

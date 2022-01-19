@@ -2,29 +2,7 @@
 
 import math
 import rospy
-from geometry_msgs.msg import Pose, Quaternion, Vector3
 from moveit_commander import RobotCommander, MoveGroupCommander
-from tf.transformations import quaternion_from_euler, euler_from_quaternion
-
-
-def euler_to_quaternion(euler):
-    """Converts euler angles to quaternion.
-
-    euler: geometry_msgs/Vector3
-    quaternion: geometry_msgs/Quaternion
-    """
-    q = quaternion_from_euler(euler.x, euler.y, euler.z)
-    return Quaternion(x=q[0], y=q[1], z=q[2], w=q[3])
-
-
-def quaternion_to_euler(quaternion):
-    """Converts quaternion to euler angles.
-
-    quarternion: geometry_msgs/Quaternion
-    euler: geometry_msgs/Vector3
-    """
-    e = euler_from_quaternion((quaternion.x, quaternion.y, quaternion.z, quaternion.w))
-    return Vector3(x=e[0], y=e[1], z=e[2])
 
 
 def show_joint_values(mgc):
@@ -49,28 +27,52 @@ def go_with_joint_values(mgc, jvs):
 
 def pick_and_toss():
     """Executes pick-and-toss motions."""
-    rospy.init_node("moveit_command_sender")
+    rospy.init_node("moveit_command_sender", disable_signals=True)
     robot = RobotCommander()
     rarm = MoveGroupCommander("arm_right")
 
     # get current status
     rarm_initial_pose = rarm.get_current_pose().pose
     rarm_initial_joint_values = rarm.get_current_joint_values()
-    
+
     # set maximum velocity and acceleration
     rarm.set_max_velocity_scaling_factor(0.8)
     rarm.set_max_acceleration_scaling_factor(0.8)
 
     # right arm pose above object
-    p1_jvs = [3.814509, -0.300463, -2.478898, 0.001337, -1.326666, -1.775833, 1.812151]
+    p1_jvs = [3.814509,
+              -0.300463,
+              -2.478898,
+              0.001337,
+              -1.326666,
+              -1.775833,
+              1.812151]
     # right arm pose to grasp
-    p2_jvs = [4.072096, -0.224721, -2.261118, -0.141035, -1.462992, -1.302057, 1.862357]
+    p2_jvs = [4.072096,
+              -0.224721,
+              -2.261118,
+              -0.141035,
+              -1.462992,
+              -1.302057,
+              1.862357]
     # right arm pose above target place to release
-    p3_jvs = [0.0, math.radians(40.0), 0.0, math.radians(110.0), 0.0, math.radians(100.0), 0.0]
+    p3_jvs = [0.0,
+              math.radians(40.0),
+              0.0,
+              math.radians(110.0),
+              0.0,
+              math.radians(100.0),
+              0.0]
     # right arm pose to release
-    p4_jvs = [0.0, math.radians(50.0), 0.0, math.radians(20.0), 0.0, 0.0, 0.0]
+    p4_jvs = [0.0,
+              math.radians(50.0),
+              0.0,
+              math.radians(20.0),
+              0.0,
+              0.0,
+              0.0]
 
-    # execute wiggle motions repeating 2 times for both arms
+    # execute pick-and-toss motions using right arm
     rospy.loginfo("Start right arm pick-and-toss motions.")
     cnt = 0
     while cnt < 1:
@@ -96,7 +98,7 @@ def pick_and_toss():
         cnt += 1
 
     # initialize joints
-    rospy.loginfo("Initializing both arm joint values...")
+    rospy.loginfo("Initializing right arm joint values...")
     rarm.set_joint_value_target(rarm_initial_joint_values)
     rarm.go()
     rospy.sleep(rospy.Duration.from_sec(1))
@@ -108,4 +110,3 @@ if __name__ == '__main__':
         pick_and_toss()
     except rospy.ROSInterruptException:
         pass
-
