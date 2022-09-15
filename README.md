@@ -30,6 +30,14 @@ ROS package for YASKAWA MOTOMAN SDA5F tutorial.
 4. execute tutorial demo  
     `$ roslaunch sda5f_tutorials [demo_name].launch`
 
+## Examples
+
+1. wiggle  
+    `$ roslaunch sda5f_tutorials wiggle.launch`  
+
+<img src="images/wiggle.gif" height="200">  
+
+
 ## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)

@@ -1,3 +1,0 @@
-<launch>
-    <node pkg="sda5f_tutorials" name="pick_and_toss" type="pick_and_toss.py" output="screen"/>
-</launch>

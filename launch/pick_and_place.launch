@@ -1,3 +1,0 @@
-<launch>
-    <node pkg="sda5f_tutorials" name="pick_and_place" type="pick_and_place.py" output="screen"/>
-</launch>
