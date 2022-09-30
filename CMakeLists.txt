@@ -24,5 +24,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-catkin_install_python(PROGRAMS scripts/wiggle.py scripts/pick_and_place.py
+catkin_install_python(PROGRAMS scripts/wiggle.py
                       DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
