@@ -1,8 +1,19 @@
 # sda5f_tutorials
 
-ROS package for YASKAWA MOTOMAN SDA5F tutorial.
+- ROS package for YASKAWA MOTOMAN SDA5F tutorial.
+  - For more details, please refer to [catkin_ws/src/sda5f_tutorials/README.md](catkin_ws/src/sda5f_tutorials/README.md)
+- Docker for simulation and control environments for YASKAWA MOTOMAN SDA5F.
 
-## Dependencies
+## Requirements for docker environment
+
+- Ubuntu 20.04
+  - RTX3080
+    - NVIDIA Driver 470.103.01
+  - docker 20.10.12
+  - docker-compose 1.29.2
+  - nvidia-docker2 2.8.0-1
+
+## Dependencies for tutorial programs
 
 - [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu)
 - [ros-industrial/motoman](https://github.com/ros-industrial/motoman)
@@ -10,35 +21,30 @@ ROS package for YASKAWA MOTOMAN SDA5F tutorial.
 
 ## Installation
 
-    $ cd catkin_ws
-    $ git clone -b kinetic-devel git@github.com:ros-industrial/motoman.git src/motoman
-    $ git clone git@github.com:qqfly/motoman_sda5f_pkg.git src/motoman_sda5f_pkg
-    $ git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git src/sda5f_tutorials
-    $ rosdep update
-    $ rosdep install --from-paths src --ignore-src --rosdistro kinetic
-    $ catkin build
-    $ source ../catkin_ws/devel/setup.bash
+```
+git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git
+cd sda5f_tutorials/catkin_ws
+git clone -b kinetic-devel git@github.com:ros-industrial/motoman.git src/motoman
+git clone git@github.com:qqfly/motoman_sda5f_pkg.git src/motoman_sda5f_pkg
+cd ../
+docker-compose build
+docker-compose up
+```
 
 ## Usage
+#### Host machine
+```
+xhost +
+docker exec -it sda5f_container bash
+```
 
-1. launch motoman driver  
-    `$ roslaunch motoman_sda5f_support robot_interface_streaming_sda5f.launch robot_ip:=X.X.X.X controller:=fs100`
-2. enable joint motors  
-    `$ rosservice call robot_enable`
-3. launch moveit  
-    `$ roslaunch motoman_sda5f_moveit_config demo.launch`
-4. execute tutorial demo  
-    `$ roslaunch sda5f_tutorials [demo_name].launch`
-
-## Examples
-
-1. wiggle  
-    `$ roslaunch sda5f_tutorials wiggle.launch`  
-
+#### Docker container
+```
+./wiggle.bash
+```
 <img src="images/wiggle.gif" height="200">  
 
-
-## Author / Contributor
+## Author / Contibutor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
 
