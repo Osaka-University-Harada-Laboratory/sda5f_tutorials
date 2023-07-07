@@ -1,5 +1,8 @@
 # sda5f_tutorials
 
+[![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 - ROS package for YASKAWA MOTOMAN SDA5F tutorial.
   - For more details, please refer to [catkin_ws/src/sda5f_tutorials/README.md](catkin_ws/src/sda5f_tutorials/README.md)
 - Docker for simulation and control environments for YASKAWA MOTOMAN SDA5F.
@@ -21,7 +24,7 @@
 
 ## Installation
 
-```
+```bash
 git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git
 cd sda5f_tutorials/catkin_ws
 git clone -b kinetic-devel git@github.com:ros-industrial/motoman.git src/motoman
@@ -33,15 +36,16 @@ docker-compose up
 
 ## Usage
 #### Host machine
-```
+```bash
 xhost +
 docker exec -it sda5f_container bash
 ```
 
 #### Docker container
-```
+```bash
 ./wiggle.bash
 ```
+
 <img src="images/wiggle.gif" height="200">  
 
 ## Author / Contibutor
