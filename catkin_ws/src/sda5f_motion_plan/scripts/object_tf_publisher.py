@@ -15,14 +15,24 @@ def update_object_tf(br, scene):
     """Updates an object tf."""
     names = scene.get_known_object_names()
     poses = scene.get_object_poses(names)
-    br.sendTransform((0, 0, 0), tf.transformations.quaternion_from_euler(0, 0, 0),
-        rospy.Time.now(), "world", "base_link")
-    for name,pose in poses.items():
-        br.sendTransform((pose.position.x, pose.position.y, pose.position.z),
-                         (pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w),
-                         rospy.Time.now(),
-                         name,
-                         "base_link")
+    br.sendTransform(
+        (0, 0, 0),
+        tf.transformations.quaternion_from_euler(0, 0, 0),
+        rospy.Time.now(),
+        "world",
+        "base_link")
+    for name, pose in poses.items():
+        br.sendTransform(
+            (pose.position.x,
+             pose.position.y,
+             pose.position.z),
+            (pose.orientation.x,
+             pose.orientation.y,
+             pose.orientation.z,
+             pose.orientation.w),
+            rospy.Time.now(),
+            name,
+            "base_link")
 
 
 def euler_to_quaternion(euler):
@@ -68,25 +78,34 @@ def add_collisions(scene, origin):
     pkg_path = rospkg.RosPack().get_path('sda5f_motion_plan')
 
     scene.remove_world_object(container_name)
-    scene.add_mesh(container_name, \
-                   gen_pose(origin, Vector3(0.6, 0.18, -0.40), Vector3(0., 0., math.pi/2.)), \
-                   filename=osp.join(pkg_path, "meshes", container_name+".stl"))
+    scene.add_mesh(container_name,
+                   gen_pose(origin,
+                            Vector3(0.6, 0.18, -0.40),
+                            Vector3(0., 0., math.pi/2.)),
+                   filename=osp.join(pkg_path,
+                                     "meshes",
+                                     container_name+".stl"))
     scene.remove_world_object(rack_name)
-    scene.add_mesh(rack_name, \
-                   gen_pose(origin, Vector3(0.2, -0.78, -0.36), Vector3(0., 0., 0.)), \
-                   filename=osp.join(pkg_path, "meshes", rack_name+".stl"))
+    scene.add_mesh(rack_name,
+                   gen_pose(origin,
+                            Vector3(0.2, -0.78, -0.36),
+                            Vector3(0., 0., 0.)),
+                   filename=osp.join(pkg_path,
+                                     "meshes",
+                                     rack_name+".stl"))
 
 
 def scene_tf_publish():
     rospy.init_node("object_tf_publisher")
     planning_scene_interface = PlanningSceneInterface()
     br = tf.TransformBroadcaster()
-    rospy.sleep(rospy.Duration(1.0)) # necessary
+    rospy.sleep(rospy.Duration(1.0))  # necessary
 
     add_collisions(planning_scene_interface, 'base_link')
     r = rospy.Rate(60)
     rospy.get_published_topics('/')
-    scene_pub = rospy.Publisher('planning_scene', PlanningScene, queue_size=100)
+    scene_pub = rospy.Publisher(
+        'planning_scene', PlanningScene, queue_size=100)
     p = PlanningScene()
     p.is_diff = True
     p.object_colors.append(gen_color(container_name, 0.9, 0.9, 0.9, 0.5))

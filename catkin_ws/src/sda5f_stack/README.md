@@ -17,6 +17,6 @@ roslaunch motoman_sda5f_moveit_config demo_sim.launch     # use moveit on simula
 3. Launch motoman_driver  
 
 ```bash
-roslaunch bringup.launch robot_ip:=10.0.0.2 controller:=fs100
-roslaunch bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake:=true
+roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100
+roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=true
 ```

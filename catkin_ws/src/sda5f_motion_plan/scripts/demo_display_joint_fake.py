@@ -4,9 +4,12 @@ import rospy
 import queue
 from threading import Thread
 from moveit_msgs.msg import DisplayTrajectory
+from moveit_commander import (MoveGroupCommander,
+                              RobotCommander,
+                              PlanningSceneInterface)
+from tf.transformations import (quaternion_from_euler,
+                                euler_from_quaternion)
 from geometry_msgs.msg import Pose, PoseStamped, Quaternion, Vector3
-from moveit_commander import MoveGroupCommander, RobotCommander, PlanningSceneInterface
-from tf.transformations import quaternion_from_euler, euler_from_quaternion
 
 
 class ThreadWithReturnValue(Thread):
@@ -128,8 +131,22 @@ def demo_display():
     torso.set_max_acceleration_scaling_factor(0.5)
 
     # Initializing whole body joint values
-    initial_left_jvs = [-0.8870205879211426, -0.4020548462867737, 2.5387532711029053, -1.1657341718673706, -1.7188026905059814, -1.797049880027771, 1.774945855140686]
-    initial_right_jvs = [-0.7407152652740479, -0.4013258218765259, 2.4970169067382812, -1.2051773071289062, -1.8124666213989258, -1.7916895151138306, 1.1042062044143677]
+    initial_left_jvs = [
+        -0.8870205879211426,
+        -0.4020548462867737,
+        2.5387532711029053,
+        -1.1657341718673706,
+        -1.7188026905059814,
+        -1.797049880027771,
+        1.774945855140686]
+    initial_right_jvs = [
+        -0.7407152652740479,
+        -0.4013258218765259,
+        2.4970169067382812,
+        -1.2051773071289062,
+        -1.8124666213989258,
+        -1.7916895151138306,
+        1.1042062044143677]
     initial_torso_jvs = [0., 0.]
 
     rospy.loginfo("Initializing whole body joints...")
@@ -149,14 +166,63 @@ def demo_display():
     rospy.sleep(rospy.Duration.from_sec(1))
 
     # generate poses
-    container_pregrasp_jv_l = [-0.801922619342804, 0.32966917753219604, 2.580672025680542, -0.9104403257369995, -1.5893863439559937, -1.2823562622070312, 0.9569960236549377]
-    container_grasp_jv_l = [-0.7361437082290649, 0.23239049315452576, 2.643322229385376, -0.8129642009735107, -1.7067433595657349, -1.2258919477462769, 0.9572040438652039]
-    container_release_jv_l = [-0.7883294224739075, -0.42820844054222107, 2.6489417552948, -1.0349358320236206, -1.9410779476165771, -1.7176792621612549, 1.6614571809768677]
-    container_postrelease_jv_l = [-0.8870205879211426, -0.4020548462867737, 2.5387532711029053, -1.1657341718673706, -1.7188026905059814, -1.797049880027771, 1.774945855140686]
+    container_pregrasp_jv_l = [
+        -0.801922619342804,
+        0.32966917753219604,
+        2.580672025680542,
+        -0.9104403257369995,
+        -1.5893863439559937,
+        -1.2823562622070312,
+        0.9569960236549377]
+    container_grasp_jv_l = [
+        -0.7361437082290649,
+        0.23239049315452576,
+        2.643322229385376,
+        -0.8129642009735107,
+        -1.7067433595657349,
+        -1.2258919477462769,
+        0.9572040438652039]
+    container_release_jv_l = [
+        -0.7883294224739075,
+        -0.42820844054222107,
+        2.6489417552948,
+        -1.0349358320236206,
+        -1.9410779476165771,
+        -1.7176792621612549,
+        1.6614571809768677]
+    container_postrelease_jv_l = [
+        -0.8870205879211426,
+        -0.4020548462867737,
+        2.5387532711029053,
+        -1.1657341718673706,
+        -1.7188026905059814,
+        -1.797049880027771,
+        1.774945855140686]
 
-    object_pregrasp_jv_r = [-0.7407152652740479, -0.4013258218765259, 2.4970169067382812, -1.2051773071289062, -1.8124666213989258, -1.7916895151138306, 1.1042062044143677]
-    object_grasp_jv_r = [-0.4392804503440857, -0.5212193131446838, 2.82370924949646, -0.7361285090446472, -2.426787853240967, -1.4180359840393066, 0.8587952852249146]
-    object_release_jv_r = [-0.9103036522865295, -0.8776496052742004, 2.5507972240448, 0.02264520153403282, -2.06750226020813, -1.672469973564148, 1.2653261423110962]
+    object_pregrasp_jv_r = [
+        -0.7407152652740479,
+        -0.4013258218765259,
+        2.4970169067382812,
+        -1.2051773071289062,
+        -1.8124666213989258,
+        -1.7916895151138306,
+        1.1042062044143677]
+    object_grasp_jv_r = [
+        -0.4392804503440857,
+        -0.5212193131446838,
+        2.82370924949646,
+        -0.7361285090446472,
+        -2.426787853240967,
+        -1.4180359840393066,
+        0.8587952852249146]
+    object_release_jv_r = [
+        -0.9103036522865295,
+        -0.8776496052742004,
+        2.5507972240448,
+        0.02264520153403282,
+        -2.06750226020813,
+        -1.672469973564148,
+        1.2653261423110962]
 
     torso_pick_joint_values = [0., 0.]
     torso_place_joint_values = [-0.7, 0.]
@@ -170,7 +236,12 @@ def demo_display():
         is_ready.put(False)
         return True
 
-    def larm_motions(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso):
+    def larm_motions(
+            is_ready_larm,
+            is_ready_rarm,
+            is_ready_leef,
+            is_ready_reef,
+            is_ready_torso):
         """Defines left arm motions in a thread."""
         rospy.loginfo("larm: start thread")
 
@@ -199,7 +270,12 @@ def demo_display():
 
         return True
 
-    def rarm_motions(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso):
+    def rarm_motions(
+            is_ready_larm,
+            is_ready_rarm,
+            is_ready_leef,
+            is_ready_reef,
+            is_ready_torso):
         """Defines right arm motions in a thread."""
         rospy.loginfo("rarm: start thread")
 
@@ -235,7 +311,12 @@ def demo_display():
 
         return True
 
-    def leef_motions(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso):
+    def leef_motions(
+            is_ready_larm,
+            is_ready_rarm,
+            is_ready_leef,
+            is_ready_reef,
+            is_ready_torso):
         """Defines left end effector motions in a thread."""
         rospy.loginfo("leef: start thread")
 
@@ -261,7 +342,12 @@ def demo_display():
 
         return True
 
-    def reef_motions(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso):
+    def reef_motions(
+            is_ready_larm,
+            is_ready_rarm,
+            is_ready_leef,
+            is_ready_reef,
+            is_ready_torso):
         """Defines right end effector motions in a thread."""
         rospy.loginfo("reef: start thread")
 
@@ -285,7 +371,12 @@ def demo_display():
 
         return True
 
-    def torso_motions(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso):
+    def torso_motions(
+            is_ready_larm,
+            is_ready_rarm,
+            is_ready_leef,
+            is_ready_reef,
+            is_ready_torso):
         """Defines right end effector motions in a thread."""
         rospy.loginfo("torso: start thread")
 
@@ -315,23 +406,43 @@ def demo_display():
     rospy.loginfo("Start sda5f motions...")
     larm_thread = ThreadWithReturnValue(
         target=larm_motions,
-        args=(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso))
+        args=(is_ready_larm,
+              is_ready_rarm,
+              is_ready_leef,
+              is_ready_reef,
+              is_ready_torso))
     larm_thread.start()
     rarm_thread = ThreadWithReturnValue(
         target=rarm_motions,
-        args=(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso))
+        args=(is_ready_larm,
+              is_ready_rarm,
+              is_ready_leef,
+              is_ready_reef,
+              is_ready_torso))
     rarm_thread.start()
     leef_thread = ThreadWithReturnValue(
         target=leef_motions,
-        args=(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso))
+        args=(is_ready_larm,
+              is_ready_rarm,
+              is_ready_leef,
+              is_ready_reef,
+              is_ready_torso))
     leef_thread.start()
     reef_thread = ThreadWithReturnValue(
         target=reef_motions,
-        args=(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso))
+        args=(is_ready_larm,
+              is_ready_rarm,
+              is_ready_leef,
+              is_ready_reef,
+              is_ready_torso))
     reef_thread.start()
     torso_thread = ThreadWithReturnValue(
         target=torso_motions,
-        args=(is_ready_larm, is_ready_rarm, is_ready_leef, is_ready_reef, is_ready_torso))
+        args=(is_ready_larm,
+              is_ready_rarm,
+              is_ready_leef,
+              is_ready_reef,
+              is_ready_torso))
     torso_thread.start()
 
     while True:
