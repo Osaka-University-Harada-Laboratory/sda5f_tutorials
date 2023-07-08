@@ -1,0 +1,3 @@
+motoman_msgs/DynamicJointTrajectory trajectory
+---
+industrial_msgs/ServiceReturnCode code

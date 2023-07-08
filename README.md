@@ -3,52 +3,51 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- ROS package for YASKAWA MOTOMAN SDA5F tutorial.
-  - For more details, please refer to [catkin_ws/src/sda5f_tutorials/README.md](catkin_ws/src/sda5f_tutorials/README.md)
+- ROS packages for YASKAWA MOTOMAN SDA5F tutorial.
 - Docker for simulation and control environments for YASKAWA MOTOMAN SDA5F.
 
-## Requirements for docker environment
+## Dependencies
 
+### Docker build environment
+
+- Ubuntu 22.04 (arch=amd64)
+  - NVIDIA GeForce RTX3070
+  	- NVIDIA Driver 470.199.02
+    - CUDA 11.4
+  - Docker 23.0.1
+  - Docker Compose 2.4.1
+  - NVIDIA Docker 2.12.0
+
+### SDA5F with OnRobot grippers
 - Ubuntu 20.04
-  - RTX3080
-    - NVIDIA Driver 470.103.01
-  - docker 20.10.12
-  - docker-compose 1.29.2
-  - nvidia-docker2 2.8.0-1
-
-## Dependencies for tutorial programs
-
-- [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu)
-- [ros-industrial/motoman](https://github.com/ros-industrial/motoman)
-- [qqfly/motoman_sda5f_pkg](https://github.com/qqfly/motoman_sda5f_pkg)
+  - ROS Noetic
+    - [onrobot](https://github.com/Osaka-University-Harada-Laboratory/onrobot)
+- YASKAWA Motoman SDA5F  
+- OnRobot RG6
+- OnRobot VG10
 
 ## Installation
 
 ```bash
-git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git
-cd sda5f_tutorials/catkin_ws
-git clone -b kinetic-devel git@github.com:ros-industrial/motoman.git src/motoman
-git clone git@github.com:qqfly/motoman_sda5f_pkg.git src/motoman_sda5f_pkg
-cd ../
-docker-compose build
-docker-compose up
+git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1  
+cd sda5f_tutorials
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel  
+docker-compose up  
 ```
 
-## Usage
-#### Host machine
+## Usage with docker
+
 ```bash
-xhost +
-docker exec -it sda5f_container bash
+./utils/sda5f_pp_fake.sh
 ```
+<img src=image/sim.gif height=200>
 
-#### Docker container
 ```bash
-./wiggle.bash
+./utils/sda5f_pp.sh
 ```
+<img src=image/real.gif height=200>
 
-<img src="images/wiggle.gif" height="200">  
-
-## Author / Contibutor
+## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
 

@@ -17,8 +17,9 @@ services:
             # to tansport X11 application (require xhost local:)
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             # ros catkin dir
-            - ./catkin_ws:/catkin_ws
+            - ./catkin_ws/src/sda5f_motion_plan:/catkin_ws/src/sda5f_motion_plan
+            - ./catkin_ws/src/sda5f_stack:/catkin_ws/src/sda5f_stack
         privileged: true
         tty: true
         network_mode: host
-        command: bash -c "source /opt/ros/kinetic/setup.bash && cd /catkin_ws && catkin build && bash"
+        command: bash -c "source /opt/ros/noetic/setup.bash && catkin build -DPYTHON_EXECUTABLE=/usr/bin/python3 && bash"

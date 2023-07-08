@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+	<param name="robot_description" command="$(find xacro)/xacro '$(find motoman_sda5f_support)/urdf/sda5f_macro_with_onrobot.xacro'" />
+</launch>

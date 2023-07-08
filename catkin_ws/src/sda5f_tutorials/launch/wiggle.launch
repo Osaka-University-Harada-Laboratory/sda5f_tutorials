@@ -1,3 +1,0 @@
-<launch>
-    <node pkg="sda5f_tutorials" name="wiggle" type="wiggle.py" output="screen"/>
-</launch>
