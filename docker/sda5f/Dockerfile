@@ -61,6 +61,20 @@ WORKDIR /catkin_ws/
 RUN pip install pyassimp==4.1.3 --ignore-installed
 
 # Generates bash commands
+
+## sda5f_rviz.sh
+RUN echo "roslaunch motoman_sda5f_support test_sda5f_with_onrobot.launch" >> ~/.bash_history
+
+## sda5f_moveit.sh
+RUN echo "roslaunch motoman_sda5f_moveit_config demo_sim.launch" >> ~/.bash_history
+
+## sda5f_pp_fake.sh
+RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=true" >> ~/.bash_history
+RUN echo "rosrun sda5f_motion_plan object_tf_publisher.py" >> ~/.bash_history
+RUN echo "roslaunch sda5f_motion_plan demo_display.launch fake_execution:=true planning_space:=joint" >> ~/.bash_history
+
+## sda5f_pp.sh
+RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=false" >> ~/.bash_history
+RUN echo "roslaunch sda5f_motion_plan demo_display.launch fake_execution:=false planning_space:=joint" >> ~/.bash_history
+
 WORKDIR /catkin_ws/src/
-RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100" >> ~/.bash_history
-RUN echo "roslaunch sda5f_motion_plan demo_display.launch" >> ~/.bash_history

@@ -21,8 +21,9 @@
   - NVIDIA Docker 2.12.0
 
 ### SDA5F with OnRobot grippers
+
 - Ubuntu 20.04
-  - ROS Noetic
+  - [ROS Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu)
     - [onrobot](https://github.com/Osaka-University-Harada-Laboratory/onrobot)
 - YASKAWA Motoman SDA5F  
 - OnRobot RG6
@@ -34,16 +35,28 @@
 git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1  
 cd sda5f_tutorials
 COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel  
-docker-compose up  
+docker compose up  
 ```
 
 ## Usage with docker
 
+- Visualizing the model
+```bash
+./utils/sda5f_rviz.sh
+```
+
+- Executing the moveit
+```bash
+./utils/sda5f_moveit.sh
+```
+
+- Executing a pick-and-place demonstration in simulation
 ```bash
 ./utils/sda5f_pp_fake.sh
 ```
 <img src=image/sim.gif height=200>
 
+- Executing a pick-and-place demonstration in simulation
 ```bash
 ./utils/sda5f_pp.sh
 ```
