@@ -2,6 +2,7 @@
 
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![license - BSD-3-Clause](https://img.shields.io/:license-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 - ROS packages for YASKAWA MOTOMAN SDA5F tutorial.
   - [sda5f_motion_plan](/catkin_ws/src/sda5f_motion_plan): A package to execute a product display task with dual arms.
@@ -22,7 +23,7 @@
 
 ### SDA5F with OnRobot grippers
 
-- Ubuntu 20.04
+- Ubuntu 20.04 (arch=amd64)
   - [ROS Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu)
     - [onrobot](https://github.com/Osaka-University-Harada-Laboratory/onrobot)
 - YASKAWA Motoman SDA5F  
@@ -68,4 +69,4 @@ docker compose up
 
 ## License
 
-This software is released under the MIT License, see [LICENSE](./LICENSE).
+Please refer to each package.xml of the ROS packages
