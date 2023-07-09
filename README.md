@@ -2,7 +2,8 @@
 
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](http://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![license - BSD-3-Clause](https://img.shields.io/:license-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![License: BSD](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![repo size](https://img.shields.io/github/repo-size/Osaka-University-Harada-Laboratory/sda5f_tutorials)
 
 - ROS packages for YASKAWA MOTOMAN SDA5F tutorial.
   - [sda5f_motion_plan](/catkin_ws/src/sda5f_motion_plan): A package to execute a product display task with dual arms.
