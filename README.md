@@ -14,7 +14,7 @@
 
 ### Docker build environment
 
-- Ubuntu 22.04 (arch=amd64)
+- [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
   - NVIDIA GeForce RTX3070
   	- NVIDIA Driver 470.199.02
     - CUDA 11.4
@@ -24,18 +24,20 @@
 
 ### SDA5F with OnRobot grippers
 
-- Ubuntu 20.04 (arch=amd64)
+- [Ubuntu 20.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=20.04+LTS)
   - [ROS Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu)
     - [onrobot](https://github.com/Osaka-University-Harada-Laboratory/onrobot)
-- YASKAWA Motoman SDA5F  
-- OnRobot RG6
-- OnRobot VG10
+    - [Byobu](https://www.byobu.org/)
+- [YASKAWA Motoman SDA5F](https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/sda-series/sda5f)  
+- [OnRobot RG6](https://onrobot.com/en/products/rg6-gripper)
+- [OnRobot VGC10](https://onrobot.com/en/products/vgc10)
 
 ## Installation
 
 ```bash
 git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1  
 cd sda5f_tutorials
+sudo apt install byobu
 COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel  
 docker compose up  
 ```
