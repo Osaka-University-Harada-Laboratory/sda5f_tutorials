@@ -44,19 +44,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN mkdir -p /tmp/
 RUN mkdir -p /catkin_ws/src && \
-	cd /catkin_ws/src && \
-	/bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_init_workspace" && \
-	cd /catkin_ws && \
-	/bin/bash -c "source /opt/ros/noetic/setup.bash; catkin build" && \
-	echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
-	echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc && \
-	echo "export ROS_PACKAGE_PATH=\${ROS_PACKAGE_PATH}:/catkin_ws" >> ~/.bashrc && \
-	echo "export ROS_WORKSPACE=/catkin_ws" >> ~/.bashrc
+    cd /catkin_ws/src && \
+    /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin_init_workspace" && \
+    cd /catkin_ws && \
+    /bin/bash -c "source /opt/ros/noetic/setup.bash; catkin build" && \
+    echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
+    echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc && \
+    echo "export ROS_PACKAGE_PATH=\${ROS_PACKAGE_PATH}:/catkin_ws" >> ~/.bashrc && \
+    echo "export ROS_WORKSPACE=/catkin_ws" >> ~/.bashrc
 
 WORKDIR /catkin_ws/src/
-RUN git clone https://github.com/ros-industrial/industrial_core.git -b melodic --depth 1
-RUN git clone https://github.com/Osaka-University-Harada-Laboratory/onrobot.git --depth 1
-RUN git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git --depth 1
+RUN git clone https://github.com/ros-industrial/industrial_core.git -b melodic \
+    && cd industrial_core \
+    && git reset --hard edcffadd039b413b126eac8eb49b655f4c1cc00b
+RUN git clone https://github.com/Osaka-University-Harada-Laboratory/onrobot.git \
+    && cd onrobot \
+    && git reset --hard cf4399b848461977851c37a3a832a2352d8db369
+RUN git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git \
+    && cd roboticsgroup_upatras_gazebo_plugins \
+    && git reset --hard 15187abc17f22dbd3fa720d70ad50de74a668b7c
 WORKDIR /catkin_ws/
 RUN pip install pyassimp==4.1.3 --ignore-installed
 

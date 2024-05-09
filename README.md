@@ -44,6 +44,7 @@ docker compose up
 
 ## Usage with docker
 
+### Simulation
 - Visualizing the model
 ```bash
 ./utils/sda5f_rviz.sh
@@ -51,16 +52,22 @@ docker compose up
 
 - Executing the moveit
 ```bash
-./utils/sda5f_moveit.sh
+./utils/sda5f_moveit_sim.sh
 ```
 
-- Executing a pick-and-place demonstration in simulation
+- Executing a pick-and-place demonstration
 ```bash
 ./utils/sda5f_pp_fake.sh
 ```
 <img src=image/sim.gif height=200>
 
-- Executing a pick-and-place demonstration in simulation
+### Real robot
+- Executing the moveit
+```bash
+./utils/sda5f_moveit_real.sh
+```
+
+- Executing a pick-and-place demonstration
 ```bash
 ./utils/sda5f_pp.sh
 ```
