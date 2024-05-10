@@ -35,16 +35,25 @@
 ## Installation
 
 ```bash
-git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1  
-cd sda5f_tutorials
 sudo apt install byobu
-COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel  
-docker compose up  
+git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1 && cd sda5f_tutorials
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel   
 ```
 
 ## Usage with docker
 
-### Simulation
+### Using utility scripts
+
+1. Build and run the docker environment
+- Create and start docker containers in the initially opened terminal
+  ```bash
+  docker compose up
+  ```
+
+2. Run a demonstration in the local machine
+  - Execute a below script
+
+#### Simulation
 - Visualizing the model
 ```bash
 ./utils/sda5f_rviz.sh
@@ -61,7 +70,7 @@ docker compose up
 ```
 <img src=image/sim.gif height=200>
 
-### Real robot
+#### Real robot
 - Executing the moveit
 ```bash
 ./utils/sda5f_moveit_real.sh
@@ -73,9 +82,33 @@ docker compose up
 ```
 <img src=image/real.gif height=200>
 
+### Manually execute commands
+
+1. Build and run the docker environment
+- Create and start docker containers in the initially opened terminal
+  ```bash
+  docker compose up
+  ```
+- Execute the container in another terminal
+  ```bash
+  xhost +
+  docker exec -it sda5f_container bash
+  ```
+
+2. Run a demonstration in the container  
+    ```bash
+    byobu
+    # First command
+    # F2 to create a new window
+    # Second command
+    # Ctrl + F6 to close the selected window
+    ```
+
 ## Author / Contributor
 
 [Takuya Kiyokawa](https://takuya-ki.github.io/)
+
+We always welcome collaborators!
 
 ## License
 
