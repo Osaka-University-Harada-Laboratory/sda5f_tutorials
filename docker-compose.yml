@@ -1,4 +1,3 @@
-version: "2.3"
 services:
     sda5f_ws:
         build: docker/sda5f
