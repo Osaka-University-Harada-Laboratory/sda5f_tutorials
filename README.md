@@ -58,31 +58,32 @@ COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --p
 ```bash
 ./utils/sda5f_rviz.sh
 ```
-<img src=image/sda5f_rviz.sh.gif height=200>
+<img src=image/sda5f_rviz.sh.gif height=300>
 
 - Executing the moveit
 ```bash
 ./utils/sda5f_moveit_sim.sh
 ```
-<img src=image/sda5f_moveit_sim.sh.gif height=200>
+<img src=image/sda5f_moveit_sim.sh.gif height=300>
 
 - Executing a pick-and-place demonstration
 ```bash
 ./utils/sda5f_pp_fake.sh
 ```
-<img src=image/sda5f_pp_fake.sh.gif height=200>
+<img src=image/sda5f_pp_fake.sh.gif height=300>
 
 #### Real robot
 - Executing the moveit
 ```bash
 ./utils/sda5f_moveit_real.sh
 ```
+<img src=image/sda5f_moveit_real.sh.gif height=300>
 
 - Executing a pick-and-place demonstration
 ```bash
 ./utils/sda5f_pp.sh
 ```
-<img src=image/sda5f_pp.sh.gif height=200>
+<img src=image/sda5f_pp.sh.gif height=300>
 
 ### Manually execute commands
 
