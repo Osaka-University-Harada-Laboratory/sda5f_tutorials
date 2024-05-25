@@ -9,7 +9,7 @@ from moveit_commander import (MoveGroupCommander,
                               PlanningSceneInterface)
 from tf.transformations import (quaternion_from_euler,
                                 euler_from_quaternion)
-from geometry_msgs.msg import Pose, PoseStamped, Quaternion, Vector3
+from geometry_msgs.msg import Pose, Quaternion, Vector3
 
 
 class ThreadWithReturnValue(Thread):

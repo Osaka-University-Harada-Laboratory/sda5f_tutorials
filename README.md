@@ -34,11 +34,25 @@
 
 ## Installation
 
-```bash
-sudo apt install byobu
-git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1 && cd sda5f_tutorials
-COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel   
-```
+### Teach pendant
+
+1. Follow the instructions on [ROS Wiki](https://wiki.ros.org/motoman_driver/Tutorials).
+
+### Host machine
+
+1. Connect an Ethernet cable between the host computer and the Ethernet port of SDA5F's controller
+2. Set the network configuration as below  
+    <img src=image/network.png width=280>  
+    - The ros node expects to reach the robot at the IP `10.0.0.2`. You can change the IP with pendant  
+    <img src=image/pendant_network.jpeg width=280>  
+    - This IP is set to the `robot_ip` argument as below  
+      ```bash
+      roslaunch motoman_sda5f_support roslaunch bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=false
+      ```
+3. Build the docker environment as below  
+    ```bash
+    sudo apt install byobu && git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1 && cd sda5f_tutorials && COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel   
+    ```
 
 ## Usage with docker
 
@@ -50,40 +64,45 @@ COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --p
   docker compose up
   ```
 
-2. Run a demonstration in the local machine
-  - Execute a below script
-
 #### Simulation
+2. Run a demonstration in the local machine
+
 - Visualizing the model
-```bash
-./utils/sda5f_rviz.sh
-```
-<img src=image/sda5f_rviz.sh.gif height=300>
+  ```bash
+  ./utils/sda5f_rviz.sh
+  ```
+  <img src=image/sda5f_rviz.sh.gif height=300>
 
 - Executing the moveit
-```bash
-./utils/sda5f_moveit_sim.sh
-```
-<img src=image/sda5f_moveit_sim.sh.gif height=300>
+  ```bash
+  ./utils/sda5f_moveit_sim.sh
+  ```
+  <img src=image/sda5f_moveit_sim.sh.gif height=300>
 
 - Executing a pick-and-place demonstration
-```bash
-./utils/sda5f_pp_fake.sh
-```
-<img src=image/sda5f_pp_fake.sh.gif height=300>
+  ```bash
+  ./utils/sda5f_pp_fake.sh
+  ```
+  <img src=image/sda5f_pp_fake.sh.gif height=300>
 
 #### Real robot
+2. Turn on the controller FS100  
+  <img src=image/controller.jpeg width=200>
+3. Switch the key's direction to Remote  
+  <img src=image/pendant_key.jpeg width=200>
+4. Run a demonstration in the local machine  
+
 - Executing the moveit
-```bash
-./utils/sda5f_moveit_real.sh
-```
-<img src=image/sda5f_moveit_real.sh.gif height=300>
+  ```bash
+  ./utils/sda5f_moveit_real.sh
+  ```
+  <img src=image/sda5f_moveit_real.sh.gif height=300>
 
 - Executing a pick-and-place demonstration
-```bash
-./utils/sda5f_pp.sh
-```
-<img src=image/sda5f_pp.sh.gif height=300>
+  ```bash
+  ./utils/sda5f_pp.sh
+  ```
+  <img src=image/sda5f_pp.sh.gif height=300>
 
 ### Manually execute commands
 
@@ -94,22 +113,20 @@ COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --p
   ```
 - Execute the container in another terminal
   ```bash
-  xhost +
-  docker exec -it sda5f_container bash
+  xhost + && docker exec -it sda5f_container bash
   ```
 
 2. Run a demonstration in the container  
     ```bash
     byobu
-    # First command
-    # F2 to create a new window
-    # Second command
-    # Ctrl + F6 to close the selected window
     ```
+    - First command & F2 to create a new window & Second command ...
+    - Ctrl + F6 to close the selected window
 
 ## Author / Contributor
 
-[Takuya Kiyokawa](https://takuya-ki.github.io/)
+[Takuya Kiyokawa](https://takuya-ki.github.io/)  
+[Tomohiro Motoda](https://tomohiromotoda.github.io/)
 
 We always welcome collaborators!
 
