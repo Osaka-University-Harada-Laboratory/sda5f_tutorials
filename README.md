@@ -65,7 +65,8 @@
   ```
 
 #### Simulation
-2. Run a demonstration in the local machine
+
+2. Run a demonstration on the host machine
 
 - Visualizing the model
   ```bash
@@ -86,11 +87,12 @@
   <img src=image/sda5f_pp_fake.sh.gif height=300>
 
 #### Real robot
+
 2. Turn on the controller FS100  
   <img src=image/controller.jpeg width=200>
 3. Switch the key's direction to Remote  
   <img src=image/pendant_key.jpeg width=200>
-4. Run a demonstration in the local machine  
+4. Run a demonstration on the host machine  
 
 - Executing the moveit
   ```bash
