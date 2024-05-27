@@ -43,12 +43,12 @@
 1. Connect an Ethernet cable between the host computer and the Ethernet port of SDA5F's controller
 2. Set the network configuration as below  
     <img src=image/network.png width=280>  
-    - The ros node expects to reach the robot at the IP `10.0.0.2`. You can change the IP with pendant  
+  - The ros node expects to reach the robot at the IP `10.0.0.2`. You can change the IP with pendant.  
     <img src=image/pendant_network.jpeg width=280>  
-    - This IP is set to the `robot_ip` argument as below  
-      ```bash
-      roslaunch motoman_sda5f_support roslaunch bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=false
-      ```
+  - This IP is set to the `robot_ip` argument as below  
+    ```bash
+    roslaunch motoman_sda5f_support roslaunch bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=false
+    ```
 3. Build the docker environment as below  
     ```bash
     sudo apt install byobu && git clone git@github.com:Osaka-University-Harada-Laboratory/sda5f_tutorials.git --depth 1 && cd sda5f_tutorials && COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --no-cache --parallel   
@@ -89,9 +89,9 @@
 #### Real robot
 
 2. Turn on the controller FS100  
-  <img src=image/controller.jpeg width=200>
+    <img src=image/controller.jpeg width=200>
 3. Switch the key's direction to Remote  
-  <img src=image/pendant_key.jpeg width=200>
+    <img src=image/pendant_key.jpeg width=200>
 4. Run a demonstration on the host machine  
 
 - Executing the moveit
