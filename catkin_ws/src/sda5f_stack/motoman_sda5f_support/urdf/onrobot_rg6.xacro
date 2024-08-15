@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="onrobot_rg6_root_link" params="prefix">
+        <link name="${prefix}onrobot_rg6_root_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <mass value="0.7" />
+                <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://motoman_sda5f_support/meshes/visual/rg6_root_link.stl" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.8 0.8 0.8 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://motoman_sda5f_support/meshes/collision/rg6_root_link.stl" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="arm_left_gripper" />
+
+        <!-- joint list -->
+        <joint name="arm_left_joint_gripper" type="fixed">
+            <origin rpy="0. 0. 0.349066" xyz="0. 0. 0."/>
+            <parent link="arm_left_link_tool0"/>
+            <child link="arm_left_gripper"/>
+        </joint>
+        <joint name="arm_left_joint_tool" type="fixed">
+            <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+            <parent link="arm_left_gripper"/>
+            <child link="${prefix}onrobot_rg6_root_link"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="finger_joints" params="prefix fingerprefix reflect">
+        <xacro:inner_knuckle_joint prefix="${prefix}" fingerprefix="${fingerprefix}" reflect="${reflect}"/>
+        <xacro:inner_finger_joint prefix="${prefix}" fingerprefix="${fingerprefix}"/>
+    </xacro:macro>
+
+    <xacro:macro name="rg6_finger_links" params="prefix fingerprefix">
+        <xacro:outer_knuckle prefix="${prefix}" fingerprefix="${fingerprefix}"/>
+        <xacro:inner_knuckle prefix="${prefix}" fingerprefix="${fingerprefix}"/>
+        <xacro:inner_finger prefix="${prefix}" fingerprefix="${fingerprefix}"/>
+    </xacro:macro>
+</robot>

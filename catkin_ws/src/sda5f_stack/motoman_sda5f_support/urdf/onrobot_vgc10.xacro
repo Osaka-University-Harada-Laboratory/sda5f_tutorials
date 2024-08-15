@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="onrobot_vgc10_root_link" params="prefix">
+        <link name="${prefix}onrobot_vgc10_root_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+                <mass value="0.6" />
+                <inertia ixx="1.0E-03" ixy="1.0E-06" ixz="1.0E-06" iyy="1.0E-03" iyz="1.0E-06" izz="1.0E-03" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://motoman_sda5f_support/meshes/visual/vgc10_root_link.stl" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.8 0.8 0.8 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://motoman_sda5f_support/meshes/collision/vgc10_root_link.stl" />
+                </geometry>
+            </collision>
+        </link>
+        <link name="arm_right_gripper" />
+
+        <!-- joint list -->
+        <joint name="arm_right_joint_gripper" type="fixed">
+            <origin rpy="0. 0. 0.349066" xyz="0. 0. 0."/>
+            <parent link="arm_right_link_tool0"/>
+            <child link="arm_right_gripper"/>
+        </joint>
+        <joint name="arm_right_joint_tool" type="fixed">
+            <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+            <parent link="arm_right_gripper"/>
+            <child link="${prefix}onrobot_vgc10_root_link"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="vgc10_finger_links" params="prefix">
+        <xacro:suction prefix="${prefix}"/>
+    </xacro:macro>
+</robot>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>sda5f_motion_plan</name>
+    <version>0.0.0</version>
+    <description>The sda5f_motion_plan package</description>
+
+    <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+    <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+    <license>MIT</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>rospy</depend>
+    <depend>std_msgs</depend>
+    <depend>geometry_msgs</depend>
+    <depend>industrial_msgs</depend>
+    <depend>tf</depend>
+    <depend>moveit_core</depend>
+    <depend>moveit_ros_planning_interface</depend>
+    <build_depend>message_generation</build_depend>
+    <exec_depend>message_runtime</exec_depend>
+</package>

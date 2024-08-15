@@ -1,0 +1,10 @@
+<launch>
+    <arg name="planning_space" default="joint"/>
+    <arg name="fake_execution" default="false"/>
+    <group if="$(arg fake_execution)">
+        <node pkg="sda5f_motion_plan" name="demo_display_fake_node" type="demo_display_$(arg planning_space)_fake.py" output="screen" />
+    </group>
+    <group unless="$(arg fake_execution)">
+        <node pkg="sda5f_motion_plan" name="demo_display_node" type="demo_display_$(arg planning_space).py" output="screen" />
+    </group>
+</launch>
