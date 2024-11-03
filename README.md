@@ -6,7 +6,7 @@
 ![repo size](https://img.shields.io/github/repo-size/Osaka-University-Harada-Laboratory/sda5f_tutorials)
 
 - ROS packages for YASKAWA MOTOMAN SDA5F tutorial.
-  - [sda5f_motion_plan](/catkin_ws/src/sda5f_motion_plan): A package to execute a product display task with dual arms.
+  - [sda5f_motion_plan](/catkin_ws/src/sda5f_motion_plan): A package to execute example motions with dual arms.
   - [sda5f_stack](/catkin_ws/src/sda5f_stack): A stack of ros packages to control the motoman sda5f.
 - Docker for simulation and control environments for YASKAWA MOTOMAN SDA5F.
 
@@ -80,11 +80,17 @@
         ```  
         <img src=image/sda5f_moveit_sim.sh.gif height=300>
 
+    - Executing a waving-arms demonstration  
+        ```bash
+        ./utils/sda5f_wavearms_fake.sh
+        ```  
+        <img src=image/sda5f_wavearms_fake.sh.gif height=300>
+
     - Executing a pick-and-place demonstration  
         ```bash
-        ./utils/sda5f_pp_fake.sh
+        ./utils/sda5f_pickplace_fake.sh
         ```  
-        <img src=image/sda5f_pp_fake.sh.gif height=300>
+        <img src=image/sda5f_pickplace_fake.sh.gif height=300>
 
 #### Real robot
 
@@ -102,11 +108,17 @@
      ```  
      <img src=image/sda5f_moveit_real.sh.gif height=300>
 
+   - Executing a waving-arms demonstration  
+     ```bash
+     ./utils/sda5f_wavearms.sh
+     ```  
+     <img src=image/sda5f_wavearms.sh.gif height=300>
+
    - Executing a pick-and-place demonstration  
      ```bash
-     ./utils/sda5f_pp.sh
+     ./utils/sda5f_pickplace.sh
      ```  
-     <img src=image/sda5f_pp.sh.gif height=300>
+     <img src=image/sda5f_pickplace.sh.gif height=300>
 
 ### Manually execute commands
 

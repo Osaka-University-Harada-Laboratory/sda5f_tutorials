@@ -71,12 +71,12 @@ RUN pip install pyassimp==4.1.3 --ignore-installed
 WORKDIR /catkin_ws/src/
 # real robot
 RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=false" >> ~/.bash_history
-RUN echo "roslaunch motoman_sda5f_moveit_config demo.launch" >> ~/.bash_history
-RUN echo "roslaunch sda5f_motion_plan demo_display.launch fake_execution:=false planning_space:=joint" >> ~/.bash_history
+RUN echo "roslaunch motoman_sda5f_moveit_config demo_wavearms.launch fake_execution:=false" >> ~/.bash_history
+RUN echo "roslaunch sda5f_motion_plan demo_pickplace.launch fake_execution:=false planning_space:=joint" >> ~/.bash_history
 # simulation
 RUN echo "roslaunch motoman_sda5f_support test_sda5f_with_onrobot.launch" >> ~/.bash_history
 RUN echo "roslaunch motoman_sda5f_moveit_config demo_sim.launch" >> ~/.bash_history
-RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=true" >> ~/.bash_history
 RUN echo "rosrun sda5f_motion_plan object_tf_publisher.py" >> ~/.bash_history
 RUN echo "roslaunch motoman_sda5f_support bringup.launch robot_ip:=10.0.0.2 controller:=fs100 fake_execution:=true" >> ~/.bash_history
-RUN echo "roslaunch sda5f_motion_plan demo_display.launch fake_execution:=true planning_space:=joint" >> ~/.bash_history
+RUN echo "roslaunch sda5f_motion_plan demo_wavearms.launch fake_execution:=true" >> ~/.bash_history
+RUN echo "roslaunch sda5f_motion_plan demo_pickplace.launch fake_execution:=true planning_space:=joint" >> ~/.bash_history

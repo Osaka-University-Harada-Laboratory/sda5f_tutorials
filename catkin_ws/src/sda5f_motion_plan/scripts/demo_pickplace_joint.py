@@ -147,7 +147,7 @@ def quaternion_to_euler(quaternion):
     return Vector3(x=e[0], y=e[1], z=e[2])
 
 
-def demo_display():
+def demo_pickplace():
     """Executes sda5f whole body motions."""
     global sda5f_e_stopped, sda5f_motion_possible, sda5f_in_motion, rg6_status
     rospy.init_node(
@@ -191,11 +191,11 @@ def demo_display():
     rarm = MoveGroupCommander("arm_right")
     torso = MoveGroupCommander("torso")
     robot = RobotCommander()
-    scene = PlanningSceneInterface()
     display_trajectory_publisher = rospy.Publisher(
         '/move_group/display_planned_path',
         DisplayTrajectory,
         queue_size=20)
+    scene = PlanningSceneInterface()
 
     larm.set_max_velocity_scaling_factor(0.5)
     larm.set_max_acceleration_scaling_factor(0.5)
@@ -490,7 +490,7 @@ def demo_display():
     rarm_thread = ThreadWithReturnValue(
         target=rarm_motions,
         args=(is_ready_larm,
-              is_ready_rarm
+              is_ready_rarm,
               is_ready_leef,
               is_ready_reef,
               is_ready_torso))
@@ -540,6 +540,6 @@ def demo_display():
 
 if __name__ == '__main__':
     try:
-        demo_display()
+        demo_pickplace()
     except rospy.ROSInterruptException:
         pass

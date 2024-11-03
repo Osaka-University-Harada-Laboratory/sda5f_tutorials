@@ -105,7 +105,7 @@ def quaternion_to_euler(quaternion):
     return Vector3(x=e[0], y=e[1], z=e[2])
 
 
-def demo_display():
+def demo_pickplace():
     """Executes sda5f whole body motions."""
     rospy.init_node(
         "moveit_command_sender",
@@ -465,6 +465,6 @@ def demo_display():
 
 if __name__ == '__main__':
     try:
-        demo_display()
+        demo_pickplace()
     except rospy.ROSInterruptException:
         pass

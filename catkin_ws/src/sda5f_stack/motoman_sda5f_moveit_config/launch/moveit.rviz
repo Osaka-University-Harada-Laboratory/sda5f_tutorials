@@ -9,8 +9,8 @@ Panels:
         - /MotionPlanning1/Planned Path1
         - /TF1
         - /TF1/Tree1
-      Splitter Ratio: 0.742560029
-    Tree Height: 408
+      Splitter Ratio: 0.7425600290298462
+    Tree Height: 461
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -18,6 +18,8 @@ Panels:
       - /Current View1
     Name: Views
     Splitter Ratio: 0.5
+Preferences:
+  PromptSaveOnExit: true
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -29,7 +31,7 @@ Visualization Manager:
       Color: 160; 160; 164
       Enabled: true
       Line Style:
-        Line Width: 0.0299999993
+        Line Width: 0.029999999329447746
         Value: Lines
       Name: Grid
       Normal Cell Count: 0
@@ -44,17 +46,16 @@ Visualization Manager:
     - Acceleration_Scaling_Factor: 1
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
+      JointsTab_Use_Radians: false
       Move Group Namespace: ""
       MoveIt_Allow_Approximate_IK: false
       MoveIt_Allow_External_Program: false
       MoveIt_Allow_Replanning: false
       MoveIt_Allow_Sensor_Positioning: false
-      MoveIt_Goal_Tolerance: 0
       MoveIt_Planning_Attempts: 10
       MoveIt_Planning_Time: 5
+      MoveIt_Use_Cartesian_Path: false
       MoveIt_Use_Constraint_Aware_IK: true
-      MoveIt_Warehouse_Host: localhost
-      MoveIt_Warehouse_Port: 33829
       MoveIt_Workspace:
         Center:
           X: 0
@@ -258,18 +259,19 @@ Visualization Manager:
         State Display Time: 0.05 s
         Trail Step Size: 1
         Trajectory Topic: move_group/display_planned_path
+        Use Sim Time: false
       Planning Metrics:
         Payload: 1
         Show Joint Torques: false
         Show Manipulability: false
         Show Manipulability Index: false
         Show Weight Limit: false
-        TextHeight: 0.0799999982
+        TextHeight: 0.07999999821186066
       Planning Request:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 0.5
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 0.129999995
+        Interactive Marker Size: 0.12999999523162842
         Joint Violation Color: 255; 0; 255
         Planning Group: sda5f
         Query Goal State: true
@@ -282,7 +284,7 @@ Visualization Manager:
       Scene Geometry:
         Scene Alpha: 1
         Scene Color: 50; 230; 50
-        Scene Display Time: 0.200000003
+        Scene Display Time: 0.20000000298023224
         Show Scene Geometry: true
         Voxel Coloring: Z-Axis
         Voxel Rendering: Occupied Voxels
@@ -861,9 +863,12 @@ Visualization Manager:
       State Display Time: 0.05 s
       Trail Step Size: 1
       Trajectory Topic: /move_group/display_planned_path
+      Use Sim Time: false
       Value: true
     - Class: rviz/TF
       Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: true
@@ -905,8 +910,6 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
-        container:
-          Value: true
         frame_lower_link:
           Value: true
         frame_upper_link:
@@ -920,8 +923,6 @@ Visualization Manager:
         onrobot_rg6_root_link:
           Value: true
         onrobot_vgc10_root_link:
-          Value: true
-        rack:
           Value: true
         right_inner_finger:
           Value: true
@@ -943,8 +944,7 @@ Visualization Manager:
           Value: true
         torso_link_b2:
           Value: true
-        world:
-          Value: true
+      Marker Alpha: 1
       Marker Scale: 1
       Name: TF
       Show Arrows: false
@@ -952,13 +952,9 @@ Visualization Manager:
       Show Names: false
       Tree:
         base_link:
-          container:
-            {}
           frame_lower_link:
             {}
           frame_upper_link:
-            {}
-          rack:
             {}
           torso_link_b1:
             arm_left_link_1_s:
@@ -1002,8 +998,6 @@ Visualization Manager:
                                     {}
           torso_link_b2:
             {}
-          world:
-            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -1022,30 +1016,30 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 3.11107492
+      Distance: 3.3376259803771973
       Enable Stereo Rendering:
-        Stereo Eye Separation: 0.0599999987
+        Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.336338282
-        Y: 0.0515981317
-        Z: 9.38773269e-07
+        X: 0.3363382816314697
+        Y: 0.05159813165664673
+        Z: 9.387732688992401e-07
       Focal Shape Fixed Size: true
-      Focal Shape Size: 0.0500000007
+      Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
-      Near Clip Distance: 0.00999999978
-      Pitch: 0.419796914
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.4147969186306
       Target Frame: base_link
-      Value: XYOrbit (rviz)
-      Yaw: 6.20997334
+      Yaw: 6.269974708557129
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1025
+  Height: 1136
   Help:
     collapsed: false
   Hide Left Dock: false
@@ -1054,11 +1048,11 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002b1000003adfc0200000009fb000000100044006900730070006c006100790073010000003a000001d2000000c600fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b00000009e00fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000230000001b60000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000003e00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000212000001d50000016b00fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb0000003c005400720061006a006500630074006f007200790020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000003e00ffffff00000490000003ad00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b10000041afc0200000009fb000000100044006900730070006c006100790073010000003b00000208000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000230000001b60000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e006701000002490000020c0000016900fffffffb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb0000003c005400720061006a006500630074006f007200790020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016000004810000041a00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Trajectory - Trajectory Slider:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1863
-  X: 57
+  Width: 1848
+  X: 72
   Y: 27

@@ -1,0 +1,9 @@
+<launch>
+    <arg name="fake_execution" default="false"/>
+    <group if="$(arg fake_execution)">
+        <node pkg="sda5f_motion_plan" name="demo_wavearms_fake_node" type="demo_wavearms_fake.py" output="screen" />
+    </group>
+    <group unless="$(arg fake_execution)">
+        <node pkg="sda5f_motion_plan" name="demo_wavearms_node" type="demo_wavearms.py" output="screen" />
+    </group>
+</launch>
